@@ -7,29 +7,67 @@ class Atleta {
         this.notas = notas;
     }
     calculaCategoria(){
-        if(idade >= 9 && idade <= 11){
-            return "Infantil"
+        if(this.idade >= 9 && this.idade <= 11){
+            this.categoria =  "Infantil";
         }
-        else if(idade >= 12 && idade <= 13){
-            return "Juvenil"
+        else if(this.idade >= 12 && this.idade <= 13){
+            this.categoria =  "Juvenil";
         }
-        else if(idade >= 14 && idade <= 15){
-            return "Intermediário"
+        else if(this.idade >= 14 && this.idade <= 15){
+            this.categoria =  "Intermediário";
         }
-        else if(idade >= 16 && idade <= 30){
-            return "Adulto"
+        else if(this.idade >= 16 && this.idade <= 30){
+            this.categoria =  "Adulto";
         }
         else{
-            return "Sem categoria"
+            this.categoria =  "Sem categoria";
         }
     }
-    calculaIMC(){}
-    calculaMediaValida(){}
-    obtemNomeAtleta(){}
-    obtemIdadeAtleta(){}
-    obtemPesoAtleta(){}
-    obtemNotasAtleta(){}
-    obtemCategoria(){}
-    obtemIMC(){}
-    obtemMediaValida(){}
+    calculaIMC(){
+        this.imc = this.peso / (this.altura * this.altura);
+    }
+    calculaMediaValida(){
+        let notasOrdenadas = this.notas.sort((a, b) => a - b).slice(1, 4);
+        this.mediaValida = notasOrdenadas.reduce((total, nota) => total = total + nota, 0)/ notasOrdenadas.length;
+    }
+    obtemNomeAtleta(){
+        return this.nome;
+    }
+    obtemIdadeAtleta(){
+        return this.idade;
+    }
+    obtemPesoAtleta(){
+        return this.peso;
+    }
+    obtemAlturaAtleta(){
+        return this.altura;
+    }
+    obtemNotasAtleta(){
+        return this.notas.join(", ");
+    }
+    obtemCategoria(){
+        return this.categoria;
+    }
+    obtemIMC(){
+        return this.imc;
+    }
+    obtemMediaValida(){
+        return this.mediaValida;
+    }
 }
+const atleta = new Atleta("Cesar Abascal",
+    30, 80, 1.70,
+    [10, 9.34, 8.42, 10, 7.88]);
+
+atleta.calculaCategoria();
+atleta.calculaIMC();
+atleta.calculaMediaValida();
+
+console.log("Atleta: " + atleta.obtemNomeAtleta());
+console.log("Idade: " + atleta.obtemIdadeAtleta());
+console.log("Peso: " + atleta.obtemPesoAtleta());
+console.log("Altura: " + atleta.obtemAlturaAtleta());
+console.log("Notas: " + atleta.obtemNotasAtleta());
+console.log("Categoria: " + atleta.obtemCategoria());
+console.log("IMC: " + atleta.obtemIMC());
+console.log("Média válida: " + atleta.obtemMediaValida());
